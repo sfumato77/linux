@@ -2337,12 +2337,11 @@ static int check_nnp_nosuid(const struct linux_binprm *bprm,
 	if (selinux_policycap_nnp_nosuid_transition) {
 		av = 0;
 		if (nnp)
-			return -EPERM;
-		else
-			return -EACCES;
+			av |= PROCESS2__NNP_TRANSITION;
+		if (nosuid)
+			av |= PROCESS2__NOSUID_TRANSITION;
 		rc = avc_has_perm(old_tsec->sid, new_tsec->sid,
-				  SECCLASS_PROCESS,
-				  av, NULL);
+				  SECCLASS_PROCESS2, av, NULL);
 		if (!rc)
 			return 0;
 	}

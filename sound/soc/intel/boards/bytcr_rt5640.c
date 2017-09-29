@@ -867,8 +867,6 @@ static int snd_byt_rt5640_mc_probe(struct platform_device *pdev)
 	}
 	log_quirks(&pdev->dev);
 
-	printk("KERN_INFO byt_rt5640_quirk:%d  quirk_override:%d\n",byt_rt5640_quirk,quirk_override);
-
 	if ((byt_rt5640_quirk & BYT_RT5640_SSP2_AIF2) ||
 	    (byt_rt5640_quirk & BYT_RT5640_SSP0_AIF2)) {
 
